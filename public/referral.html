@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Referral — RatuBlast</title>
+<link rel="icon" href="/uploads/logo.png"/>
+<link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body data-auth="1">
+<div class="container">
+<div class="topbar">
+<div class="brand"><img src="/uploads/logo.png" onerror="this.style.display='none'"/> Program Afiliasi</div>
+<button class="btn ghost" id="detailBtn" style="width:auto;padding:6px 14px;font-size:12px;">Lihat Detail</button>
+</div>
+<div class="card">
+<h3 style="letter-spacing:1.5px;">KODE REFERRAL ANDA</h3>
+<div style="display:flex;gap:8px;align-items:center;margin-top:10px;">
+<div id="refCode" style="flex:1;font-size:24px;font-weight:800;letter-spacing:3px;color:var(--green);font-family:'Courier New',monospace;">—</div>
+<button class="btn ghost" id="copyBtn" style="width:auto;padding:10px 14px;font-size:12px;">Salin Link</button>
+</div>
+<div class="ref-info">
+<svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+<div>Dapatkan komisi <b style="color:var(--green);">Rp 50</b> untuk setiap pesan yang dikirim oleh tim Anda.</div>
+</div>
+<div class="ref-tabs">
+<button class="active" data-tab="earn">PENGHASILAN TIM</button>
+<button data-tab="team">TIM AKTIF</button>
+</div>
+</div>
+<div class="card" id="tabContent">
+<div class="grid2">
+<div class="stat"><div class="lbl">Penghasilan Tim</div><div class="val green" id="statEarnings">Rp 0</div></div>
+<div class="stat"><div class="lbl">Tim Aktif</div><div class="val purple"><span id="statActive">0</span> / <span id="statTotal">0</span> Orang</div></div>
+<div class="stat"><div class="lbl">Pesan Tim</div><div class="val" id="statMsgs">0 Terkirim</div></div>
+<div class="stat"><div class="lbl">Perangkat Tim</div><div class="val" id="statDevs">0 Terkoneksi</div></div>
+</div>
+</div>
+</div>
+<nav class="nav-bottom">
+<a href="/dashboard"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+<a href="/perangkat"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg><span>Perangkat</span></a>
+<a href="/dompet"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h13a1 1 0 011 1v2"/><path d="M3 7v10a2 2 0 002 2h14a1 1 0 001-1V9a1 1 0 00-1-1H5"/><circle cx="17" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg><span>Dompet</span></a>
+<a href="/referral" class="active"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M14.5 14c2.5 0 5 1.7 5 4.5"/></svg><span>Referral</span></a>
+<a href="/profil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg><span>Profil</span></a>
+</nav>
+<div class="spinner-wrap"><svg class="swirl" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#25D366"/><stop offset="100%" stop-color="#128C7E"/></linearGradient></defs><g fill="none" stroke="url(#sg)"><circle class="r1" cx="32" cy="32" r="28" stroke-width="1.6" stroke-dasharray="1.6 4.6"/><circle class="r2" cx="32" cy="32" r="22" stroke-width="1.6" stroke-dasharray="1.6 4.6"/><circle class="r3" cx="32" cy="32" r="16" stroke-width="1.6" stroke-dasharray="1.6 4.4"/><circle class="r4" cx="32" cy="32" r="10" stroke-width="1.6" stroke-dasharray="1.6 4"/><circle class="r5" cx="32" cy="32" r="4.5" stroke-width="1.8" stroke-dasharray="1.4 3"/><circle class="core" cx="32" cy="32" r="3.5" fill="#25D366" stroke="none"/></g></svg></div>
+<div class="toast"></div>
+<script src="/js/app.js"></script>
+<script>
+async function loadReferral(){const r=await api('/api/referral');if(!r.ok)return;document.getElementById('refCode').textContent=r.code;document.getElementById('statEarnings').textContent='Rp '+Number(r.earnings).toLocaleString('id-ID');document.getElementById('statActive').textContent=r.active;document.getElementById('statTotal').textContent=r.total;document.getElementById('statMsgs').textContent=r.messages+' Terkirim';document.getElementById('statDevs').textContent=r.devices+' Terkoneksi';}
+loadReferral();
+document.getElementById('copyBtn').onclick=()=>{const code=document.getElementById('refCode').textContent;const link=location.origin+'/?ref='+code;navigator.clipboard.writeText(link).then(()=>toast('Link disalin: '+link));};
+document.querySelectorAll('.ref-tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.ref-tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');});
+document.getElementById('detailBtn').onclick=()=>{const m=document.createElement('div');m.className='modal-back open';m.innerHTML=`<div class="modal"><button class="close" onclick="this.closest('.modal-back').remove()">✕</button><h2>📘 Detail Program Afiliasi</h2><p class="sub">Cara kerja program referral RatuBlast.</p><div style="font-size:13px;line-height:1.7;color:var(--text);"><p style="margin-bottom:10px;"><b style="color:var(--green);">1.</b> Bagikan kode referral Anda ke teman.</p><p style="margin-bottom:10px;"><b style="color:var(--green);">2.</b> Teman mendaftar pakai kode tersebut.</p><p style="margin-bottom:10px;"><b style="color:var(--green);">3.</b> Setiap pesan sukses dari tim Anda = komisi <b style="color:var(--green);">Rp 50</b>.</p><p><b style="color:var(--green);">4.</b> Penghasilan otomatis masuk ke saldo Anda.</p></div></div>`;document.body.appendChild(m);};
+</script>
+</body>
+</html>

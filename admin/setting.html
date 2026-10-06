@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin Setting — RatuBlast</title>
+<link rel="icon" href="/uploads/logo.png"/>
+<link rel="stylesheet" href="/admin/css/admin.css"/>
+</head>
+<body>
+<div class="sidebar">
+<div class="brand"><img src="/uploads/logo.png" alt="RatuBlast" onerror="this.style.display='none'"/><span class="txt">Admin</span></div>
+<a href="/admin/dashboard">📊 <span class="txt">Dashboard</span></a>
+<a href="/admin/perangkat">📱 <span class="txt">Perangkat</span></a>
+<a href="/admin/wd">💰 <span class="txt">WD</span></a>
+<a class="active" href="/admin/setting">⚙️ <span class="txt">Setting</span></a>
+<a href="#" onclick="adminLogout();return false;">🚪 <span class="txt">Keluar</span></a>
+</div>
+<div class="main">
+<h1>Setting Promosi & Bantuan</h1>
+<div class="form-card">
+<h3>📢 Konten Promosi</h3>
+<div class="sub">Teks dan gambar ini akan dikirim otomatis oleh bot ke setiap target blast.</div>
+<div class="field-group">
+<label>Kata Promosi</label>
+<textarea id="promo_text" rows="5" placeholder="Tulis kata-kata promosi…"></textarea>
+</div>
+<div class="field-group">
+<label>Gambar Promosi</label>
+<div class="drop-zone" id="dropZone">
+<input type="file" id="promo_image" accept="image/png,image/jpeg,image/webp,image/gif"/>
+<div class="dz-inner" id="dzInner">
+<div class="dz-icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+<div class="dz-title">Klik atau drop gambar di sini</div>
+<div class="dz-hint">JPG, PNG, WEBP, atau GIF • Maks 5 MB</div>
+</div>
+</div>
+<div class="img-url-hint" id="imgUrlHint" style="display:none;"><span>URL aktif:</span> <code id="imgUrlText">—</code></div>
+</div>
+</div>
+<div class="form-card">
+<h3>🔗 Link Bantuan</h3>
+<div class="sub">Digunakan oleh pusaran hijau di halaman user.</div>
+<div class="field-group">
+<label>Link CS (Telegram)</label>
+<input type="url" id="cs_link" placeholder="https://t.me/Vnmblck12"/>
+</div>
+<div class="field-group">
+<label>Link Channel (Telegram)</label>
+<input type="url" id="ch_link" placeholder="https://t.me/Ratublastt"/>
+</div>
+</div>
+<div class="save-bar">
+<button class="ghost" id="btnReset">Reset</button>
+<button class="primary" id="btnSave">💾 Simpan Semua</button>
+</div>
+</div>
+<script src="/admin/js/admin.js"></script>
+</body>
+</html>

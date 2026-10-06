@@ -1,0 +1,6 @@
+node_modules/
+sessions/
+*.db
+*.db-*
+.env
+public/uploads/promo_*

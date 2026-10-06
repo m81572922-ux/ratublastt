@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin Dashboard — RatuBlast</title>
+<link rel="icon" href="/uploads/logo.png"/>
+<link rel="stylesheet" href="/admin/css/admin.css"/>
+</head>
+<body>
+<div class="sidebar">
+<div class="brand"><img src="/uploads/logo.png" alt="RatuBlast" onerror="this.style.display='none'"/><span class="txt">Admin</span></div>
+<a class="active" href="/admin/dashboard">📊 <span class="txt">Dashboard</span></a>
+<a href="/admin/perangkat">📱 <span class="txt">Perangkat</span></a>
+<a href="/admin/wd">💰 <span class="txt">WD</span></a>
+<a href="/admin/setting">⚙️ <span class="txt">Setting</span></a>
+<a href="#" onclick="adminLogout();return false;">🚪 <span class="txt">Keluar</span></a>
+</div>
+<div class="main">
+<h1>Dashboard Admin</h1>
+<div class="stat-grid">
+<div class="stat"><div class="lbl">Total User</div><div class="val" id="s1">—</div></div>
+<div class="stat"><div class="lbl">Total Device</div><div class="val" id="s2">—</div></div>
+<div class="stat"><div class="lbl">Device Online</div><div class="val green" id="s3">—</div></div>
+<div class="stat"><div class="lbl">Total Blast</div><div class="val" id="s4">—</div></div>
+<div class="stat"><div class="lbl">Total Sukses</div><div class="val green" id="s5">—</div></div>
+<div class="stat"><div class="lbl">Total Gagal</div><div class="val red" id="s6">—</div></div>
+<div class="stat"><div class="lbl">WD Pending</div><div class="val yellow" id="s7">—</div></div>
+</div>
+</div>
+<script src="/admin/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Profil — RatuBlast</title>
+<link rel="icon" href="/uploads/logo.png"/>
+<link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body data-auth="1">
+<div class="container">
+<div class="topbar"><div class="brand"><img src="/uploads/logo.png" onerror="this.style.display='none'"/> Profil</div></div>
+<div class="card" style="text-align:center;padding:24px 18px;">
+<div class="avatar-big" id="avatarInitial">R</div>
+<div style="font-size:17px;font-weight:700;" data-uname>—</div>
+<div style="color:var(--muted);font-size:12px;margin-top:4px;">Bergabung <span id="joinDate">—</span></div>
+<div style="display:inline-block;margin-top:12px;" class="badge green">AKTIF</div>
+</div>
+<div class="card">
+<h3>Statistik Akun</h3>
+<div class="grid2" style="margin-top:8px;">
+<div class="stat"><div class="lbl">Saldo</div><div class="val green" data-saldo>Rp 0</div></div>
+<div class="stat"><div class="lbl">Kuota Hari Ini</div><div class="val purple" data-quota>0</div></div>
+<div class="stat"><div class="lbl">Total Sukses</div><div class="val green" id="tSukses">0</div></div>
+<div class="stat"><div class="lbl">Total Gagal</div><div class="val red" id="tGagal">0</div></div>
+</div>
+<div class="row-info" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+<span class="k">Perangkat Terdaftar</span>
+<span class="v" id="devCount">0 / 4</span>
+</div>
+</div>
+<div class="card">
+<h3>Pengaturan Akun</h3>
+<div class="sub">Kelola kredensial login</div>
+<div class="menu-item" onclick="openChangeUsername()">
+<div class="ic"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5z"/></svg></div>
+<div class="meta"><b>Ganti Username</b><p>Ubah username akun Anda</p></div>
+<div class="chev">›</div>
+</div>
+<div class="menu-item" onclick="openChangePassword()">
+<div class="ic"><svg viewBox="0 0 24 24"><path d="M17 8h-1V6a4 4 0 10-8 0v2H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V10a2 2 0 00-2-2zm-5 8a2 2 0 110-4 2 2 0 010 4zm3-8H9V6a3 3 0 016 0v2z"/></svg></div>
+<div class="meta"><b>Ganti Password</b><p>Perbarui password login</p></div>
+<div class="chev">›</div>
+</div>
+</div>
+<div class="card">
+<h3>Bantuan & Dukungan</h3>
+<div class="sub">Kami siap membantu Anda 24 jam</div>
+<div class="menu-item" onclick="window.open((window.RB_SETTINGS?.cs_link)||'https://t.me/Vnmblck12','_blank')">
+<div class="ic green"><svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zM7 9h10v2H7V9zm0 4h7v2H7v-2z"/></svg></div>
+<div class="meta"><b>Hubungi CS</b><p>Butuh bantuan teknis?</p></div>
+<div class="chev">›</div>
+</div>
+<div class="menu-item" onclick="window.open((window.RB_SETTINGS?.ch_link)||'https://t.me/Ratublastt','_blank')">
+<div class="ic green"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm-8 3c2.5 0 4.5 2 4.5 4.5S14.5 16 12 16s-4.5-2-4.5-4.5S9.5 7 12 7z"/></svg></div>
+<div class="meta"><b>Join Channel</b><p>Info & update terbaru</p></div>
+<div class="chev">›</div>
+</div>
+<div class="menu-item" onclick="openSpinnerModal()">
+<div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+<div class="meta"><b>Pusat Bantuan</b><p>Panduan penggunaan</p></div>
+<div class="chev">›</div>
+</div>
+</div>
+<div class="card" style="padding:8px;">
+<button class="btn danger" onclick="logout()" style="margin:0;">🚪 Keluar dari Akun</button>
+</div>
+</div>
+<nav class="nav-bottom">
+<a href="/dashboard"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+<a href="/perangkat"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg><span>Perangkat</span></a>
+<a href="/dompet"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h13a1 1 0 011 1v2"/><path d="M3 7v10a2 2 0 002 2h14a1 1 0 001-1V9a1 1 0 00-1-1H5"/><circle cx="17" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg><span>Dompet</span></a>
+<a href="/referral"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M14.5 14c2.5 0 5 1.7 5 4.5"/></svg><span>Referral</span></a>
+<a href="/profil" class="active"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg><span>Profil</span></a>
+</nav>
+<div class="spinner-wrap"><svg class="swirl" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#25D366"/><stop offset="100%" stop-color="#128C7E"/></linearGradient></defs><g fill="none" stroke="url(#sg)"><circle class="r1" cx="32" cy="32" r="28" stroke-width="1.6" stroke-dasharray="1.6 4.6"/><circle class="r2" cx="32" cy="32" r="22" stroke-width="1.6" stroke-dasharray="1.6 4.6"/><circle class="r3" cx="32" cy="32" r="16" stroke-width="1.6" stroke-dasharray="1.6 4.4"/><circle class="r4" cx="32" cy="32" r="10" stroke-width="1.6" stroke-dasharray="1.6 4"/><circle class="r5" cx="32" cy="32" r="4.5" stroke-width="1.8" stroke-dasharray="1.4 3"/><circle class="core" cx="32" cy="32" r="3.5" fill="#25D366" stroke="none"/></g></svg></div>
+<div class="toast"></div>
+<script src="/js/app.js"></script>
+<script>
+async function loadFull(){const r=await api('/api/me/full');if(!r.ok)return;const u=r.user;document.querySelectorAll('[data-uname]').forEach(el=>el.textContent=u.username);document.querySelectorAll('[data-saldo]').forEach(el=>el.textContent='Rp '+Number(u.saldo).toLocaleString('id-ID'));document.querySelectorAll('[data-quota]').forEach(el=>el.textContent=u.quota);document.getElementById('avatarInitial').textContent=(u.username[0]||'R').toUpperCase();document.getElementById('tSukses').textContent=u.totalSukses;document.getElementById('tGagal').textContent=u.totalGagal;document.getElementById('devCount').textContent=u.devices+' / 4';if(u.created_at){const d=new Date(u.created_at*1000);document.getElementById('joinDate').textContent=d.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}}
+loadFull();
+function openChangeUsername(){const m=modalWrap('👤 Ganti Username','Masukkan username baru dan konfirmasi dengan password.','<label>Username Baru</label><input class="input" id="newUser" placeholder="username baru"/><label>Password</label><input class="input" id="confPass" type="password" placeholder="password Anda"/><button class="btn" id="saveUser">Simpan</button>');m.querySelector('#saveUser').onclick=async()=>{const newUsername=m.querySelector('#newUser').value.trim();const password=m.querySelector('#confPass').value;if(!newUsername||!password)return toast('Isi semua field');const r=await api('/api/me/username',{newUsername,password});if(r.ok){toast('Username berhasil diubah');m.remove();loadFull();}else toast(r.msg);};}
+function openChangePassword(){const m=modalWrap('🔒 Ganti Password','Pastikan password baru minimal 6 karakter.','<label>Password Lama</label><input class="input" id="oldP" type="password" placeholder="password lama"/><label>Password Baru</label><input class="input" id="newP" type="password" placeholder="password baru"/><label>Konfirmasi</label><input class="input" id="cfP" type="password" placeholder="ulangi password baru"/><button class="btn" id="savePass">Simpan Password</button>');m.querySelector('#savePass').onclick=async()=>{const oldPass=m.querySelector('#oldP').value;const newPass=m.querySelector('#newP').value;const cf=m.querySelector('#cfP').value;if(!oldPass||!newPass)return toast('Isi semua field');if(newPass!==cf)return toast('Konfirmasi tidak cocok');const r=await api('/api/me/password',{oldPass,newPass});if(r.ok){toast('Password berhasil diubah');m.remove();}else toast(r.msg);};}
+async function logout(){await api('/api/logout',{});location.href='/';}
+</script>
+</body>
+</html>

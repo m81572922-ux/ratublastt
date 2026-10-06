@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>RatuBlast — Masuk</title>
+<link rel="icon" href="/uploads/logo.png"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Segoe UI',system-ui,sans-serif;}
+html,body{height:100%;}
+body{background:#07090c;color:#e8e8f0;display:grid;place-items:center;min-height:100vh;padding:24px 20px;position:relative;-webkit-font-smoothing:antialiased;}
+.lang-sel{position:absolute;top:20px;right:20px;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:13px;cursor:pointer;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e8e8f0;transition:.2s;}
+.lang-sel:hover{background:rgba(255,255,255,0.08);}
+.lang-sel .arrow{color:#8a8aa0;font-size:10px;margin-left:2px;}
+.lang-menu{position:absolute;top:58px;right:20px;z-index:100;background:#11161a;border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;display:none;min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+.lang-menu.open{display:block;}
+.lang-menu div{padding:10px 14px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;color:#e8e8f0;}
+.lang-menu div:hover{background:rgba(37,211,102,0.08);}
+.lang-menu div.active{color:#25D366;font-weight:600;}
+.login-card{width:100%;max-width:400px;background:linear-gradient(160deg,#0e1216,#0a0d10);border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:28px 24px 24px;box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.logo-wrap{text-align:center;margin-bottom:14px;}
+.logo-wrap img{width:72px;height:72px;border-radius:18px;display:inline-block;box-shadow:0 8px 30px rgba(37,211,102,0.25);object-fit:cover;}
+.logo-fallback{width:72px;height:72px;border-radius:18px;display:inline-grid;place-items:center;background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;font-size:34px;font-weight:800;box-shadow:0 8px 30px rgba(37,211,102,0.35);font-family:Georgia,serif;}
+h1{font-size:22px;text-align:center;margin-bottom:6px;color:#f0c419;letter-spacing:.3px;font-family:Georgia,'Times New Roman',serif;font-weight:700;}
+p.tag{text-align:center;color:#8a8aa0;font-size:13px;margin-bottom:22px;}
+.tabs{display:flex;gap:8px;margin-bottom:20px;}
+.tabs button{flex:1;padding:12px;border-radius:10px;border:none;background:#131a1f;color:#8a8aa0;font-size:13px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:.2s;font-family:inherit;}
+.tabs button:hover{background:#1a232a;color:#e8e8f0;}
+.tabs button.active{background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;box-shadow:0 4px 14px rgba(37,211,102,0.28);}
+.field-wrap{position:relative;margin-bottom:12px;}
+.field-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:#5a5a70;pointer-events:none;}
+.field-wrap .input{width:100%;padding:14px 14px 14px 44px;background:#0d1318;color:#e8e8f0;border:1px solid rgba(255,255,255,0.06);border-radius:10px;font-size:14px;outline:none;transition:.2s;font-family:inherit;}
+.field-wrap .input:focus{border-color:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,0.15);}
+.field-wrap .input::placeholder{color:#5a5a70;}
+.field-wrap .eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:#5a5a70;font-size:14px;}
+.cf-widget{width:100%;background:#131a1f;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px 16px;margin:16px 0 18px;display:flex;align-items:center;justify-content:space-between;transition:.2s;}
+.cf-widget.verified{border-color:rgba(37,211,102,0.4);background:rgba(37,211,102,0.05);}
+.cf-left{display:flex;align-items:center;gap:12px;}
+.cf-box{width:26px;height:26px;border-radius:5px;background:#F6821F;position:relative;flex-shrink:0;display:grid;place-items:center;box-shadow:0 2px 8px rgba(246,130,31,0.35);}
+.cf-widget.verified .cf-box{background:#25D366;box-shadow:0 2px 8px rgba(37,211,102,0.45);}
+.cf-widget.verified .cf-box::after{content:'✓';color:#fff;font-weight:800;font-size:16px;animation:cfpop .3s cubic-bezier(.6,1.6,.4,1);}
+@keyframes cfpop{0%{transform:scale(0);}100%{transform:scale(1);}}
+.cf-spin{width:16px;height:16px;border-radius:50%;border:2px solid transparent;border-top-color:#fff;border-right-color:#fff;animation:cfspin .8s linear infinite;display:none;}
+.cf-widget.loading .cf-spin{display:block;}
+.cf-widget.loading .cf-box::after{display:none;}
+@keyframes cfspin{to{transform:rotate(360deg);}}
+.cf-text{font-size:13px;color:#e8e8f0;line-height:1.3;}
+.cf-text .link{display:block;color:#8a8aa0;font-size:11px;margin-top:3px;}
+.cf-text .link span{text-decoration:underline;cursor:pointer;}
+.cf-brand{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.cf-brand .cf-logo{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#e8e8f0;letter-spacing:.3px;}
+.cf-brand .cf-logo svg{width:14px;height:14px;}
+.cf-brand .cf-links{font-size:9px;color:#8a8aa0;}
+.cf-brand .cf-links span{text-decoration:underline;margin:0 2px;cursor:pointer;}
+.btn-submit{width:100%;padding:15px;border-radius:10px;border:none;background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit;letter-spacing:.5px;box-shadow:0 6px 18px rgba(37,211,102,0.28);}
+.btn-submit:active{transform:scale(0.985);}
+.btn-submit:disabled{opacity:0.45;cursor:not-allowed;box-shadow:none;background:linear-gradient(135deg,#0d6358,#1a9a4a);}
+.switch-line{text-align:center;margin-top:18px;font-size:13px;color:#8a8aa0;}
+.switch-line a{color:#25D366;text-decoration:none;font-weight:600;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="lang-sel" id="langSel"><span id="langFlag">🇮🇩</span><span id="langLabel">ID</span><span class="arrow">▾</span></div>
+<div class="lang-menu" id="langMenu">
+<div data-lang="id" class="active"><span>🇮🇩</span> Indonesia</div>
+<div data-lang="en"><span>🇬🇧</span> English</div>
+</div>
+<div class="login-card">
+<div class="logo-wrap" id="logoWrap"><img src="/uploads/logo.png" alt="RatuBlast" id="logoImg"/></div>
+<h1>Ratu Blast</h1>
+<p class="tag" id="subtitle">Broadcast WhatsApp Engine</p>
+<div class="tabs">
+<button class="active" id="tabLogin">MASUK</button>
+<button id="tabReg">DAFTAR</button>
+</div>
+<div class="field-wrap"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5z"/></svg><input class="input" id="u" placeholder="Username / Email" autocomplete="username"/></div>
+<div class="field-wrap"><svg viewBox="0 0 24 24"><path d="M17 8h-1V6a4 4 0 10-8 0v2H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V10a2 2 0 00-2-2zm-5 8a2 2 0 110-4 2 2 0 010 4zm3-8H9V6a3 3 0 016 0v2z"/></svg><input class="input" id="p" type="password" placeholder="Password" autocomplete="current-password"/><span class="eye" id="eye">👁</span></div>
+<div class="cf-widget" id="cfWidget">
+<div class="cf-left"><div class="cf-box"><div class="cf-spin"></div></div><div class="cf-text"><span data-main>Melakukan verifikasi…</span><span class="link">Tidak bisa melanjutkan? <span>Pemecahan masalah</span></span></div></div>
+<div class="cf-brand"><div class="cf-logo"><svg viewBox="0 0 24 24" fill="#F6821F"><path d="M16.5 17.5h-13a1 1 0 010-2h13a1 1 0 010 2zm2.3-6H5.2c-.5 0-.8.5-.6.9.7 1.1 2.4 3.6 6 3.6 2.9 0 4.9-1.4 6.1-3.4.3-.5 1-.7 1.6-.4l.7.3c.5.3 1.1.1 1.3-.4.5-1.4 0-3-1.5-3.6-1.4-.5-2.9.2-3.5 1.5-.3.6-1 .8-1.6.5l-.7-.3c-.5-.3-.6-.9-.3-1.4.6-1.1 2-2 3.7-2 1.5 0 2.8.7 3.6 1.8.9 1.3.9 3 .1 4.3-.3.5-.9.9-1.5 1h-.1z"/></svg>CLOUDFLARE</div><div class="cf-links"><span>Privasi</span>·<span>Bantuan</span></div></div>
+</div>
+<button class="btn-submit" id="submit" disabled>MASUK</button>
+<div class="switch-line"><span id="switchMsg">Belum punya akun?</span> <a id="switchBtn">Daftar Sekarang</a></div>
+</div>
+<script>
+const I18N={id:{subtitle:'Broadcast WhatsApp Engine',btnLogin:'MASUK',btnReg:'DAFTAR',cfWait:'Melakukan verifikasi…',cfDone:'Berhasil!',swMsgLogin:'Belum punya akun?',swBtnLogin:'Daftar Sekarang',swMsgReg:'Sudah punya akun?',swBtnReg:'Masuk',tabLogin:'MASUK',tabReg:'DAFTAR'},en:{subtitle:'WhatsApp Broadcast Engine',btnLogin:'SIGN IN',btnReg:'REGISTER',cfWait:'Verifying…',cfDone:'Success!',swMsgLogin:"Don't have an account?",swBtnLogin:'Register',swMsgReg:'Already have an account?',swBtnReg:'Sign in',tabLogin:'SIGN IN',tabReg:'REGISTER'}};
+let lang=localStorage.getItem('rb_lang')||'id',mode='login',verified=false;
+const $=(q)=>document.querySelector(q);
+(function(){const img=$('#logoImg');img.onerror=()=>{$('#logoWrap').innerHTML='<div class="logo-fallback">R</div>';};})();
+function applyLang(){const t=I18N[lang];$('#langFlag').textContent=lang==='id'?'🇮🇩':'🇬🇧';$('#langLabel').textContent=lang.toUpperCase();document.querySelectorAll('.lang-menu div').forEach(d=>d.classList.toggle('active',d.dataset.lang===lang));$('#subtitle').textContent=t.subtitle;$('#tabLogin').textContent=t.tabLogin;$('#tabReg').textContent=t.tabReg;$('#submit').textContent=verified?(mode==='login'?t.btnLogin:t.btnReg):t.cfWait;$('#switchMsg').textContent=mode==='login'?t.swMsgLogin:t.swMsgReg;$('#switchBtn').textContent=mode==='login'?t.swBtnLogin:t.swBtnReg;$('#cfText [data-main]');const m=$('.cf-text [data-main]');if(m)m.textContent=verified?t.cfDone:t.cfWait;}
+$('#langSel').onclick=(e)=>{e.stopPropagation();$('#langMenu').classList.toggle('open');};
+document.querySelectorAll('.lang-menu div').forEach(d=>d.onclick=()=>{lang=d.dataset.lang;localStorage.setItem('rb_lang',lang);$('#langMenu').classList.remove('open');applyLang();});
+document.addEventListener('click',()=>$('#langMenu').classList.remove('open'));
+$('#eye').onclick=()=>{const p=$('#p');p.type=p.type==='password'?'text':'password';};
+function setMode(m){mode=m;$('#tabLogin').classList.toggle('active',m==='login');$('#tabReg').classList.toggle('active',m==='register');$('#u').value='';$('#p').value='';applyLang();runVerify();}
+$('#tabLogin').onclick=()=>setMode('login');$('#tabReg').onclick=()=>setMode('register');$('#switchBtn').onclick=()=>setMode(mode==='login'?'register':'login');
+function runVerify(){verified=false;const w=$('#cfWidget'),b=$('#submit');w.classList.remove('verified');w.classList.add('loading');b.disabled=true;applyLang();setTimeout(()=>{w.classList.remove('loading');w.classList.add('verified');verified=true;b.disabled=false;applyLang();},1600);}
+$('#submit').onclick=async()=>{const u=$('#u').value.trim(),p=$('#p').value;if(!u||!p)return alert(lang==='id'?'Isi semua field':'Fill all fields');$('#submit').disabled=true;try{const r=await fetch('/api/'+mode,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({username:u,password:p})}).then(x=>x.json());if(r.ok){if(mode==='login')location.href='/dashboard';else{alert('Berhasil daftar');setMode('login');}}else{alert(r.msg||'Error');$('#submit').disabled=false;}}catch(e){alert('Koneksi gagal');$('#submit').disabled=false;}};
+applyLang();runVerify();
+</script>
+</body>
+</html>

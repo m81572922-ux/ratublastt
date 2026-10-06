@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin Login — RatuBlast</title>
+<link rel="icon" href="/uploads/logo.png"/>
+<link rel="stylesheet" href="/admin/css/admin.css"/>
+</head>
+<body>
+<div class="admin-login-wrap">
+<div class="box">
+<div class="card" style="padding:28px 24px;">
+<div style="text-align:center;margin-bottom:20px;">
+<img src="/uploads/logo.png" alt="RatuBlast" style="width:88px;height:88px;border-radius:20px;margin:0 auto 12px;display:block;box-shadow:0 12px 36px rgba(201,168,76,0.4);object-fit:cover;" onerror="this.style.display='none'"/>
+<h3 style="color:#e6c568;letter-spacing:3px;font-size:13px;margin-bottom:6px;">ADMIN RATUBLAST</h3>
+<div style="color:var(--muted);font-size:12px;">Masuk ke panel administrator</div>
+</div>
+<label>Username</label>
+<input class="input" id="u" autocomplete="username" placeholder="admin"/>
+<label>Password</label>
+<input class="input" id="p" type="password" autocomplete="current-password" placeholder="••••••••"/>
+<button class="btn gold" id="go" style="margin-top:6px;">Masuk</button>
+<div style="text-align:center;margin-top:16px;"><a href="/" style="color:var(--muted);font-size:12px;text-decoration:none;">← Kembali ke halaman user</a></div>
+</div>
+</div>
+</div>
+<script>
+document.getElementById('go').onclick=async()=>{
+const btn=document.getElementById('go');
+const u=document.getElementById('u').value.trim();
+const p=document.getElementById('p').value;
+if(!u||!p)return alert('Isi username & password');
+btn.disabled=true;btn.textContent='Memproses…';
+try{
+const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({username:u,password:p})}).then(x=>x.json());
+if(r.ok)location.href='/admin/dashboard';
+else{alert(r.msg||'Gagal login');btn.disabled=false;btn.textContent='Masuk';}
+}catch(e){alert('Koneksi gagal');btn.disabled=false;btn.textContent='Masuk';}
+};
+document.getElementById('p').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('go').click();});
+</script>
+</body>
+</html>
